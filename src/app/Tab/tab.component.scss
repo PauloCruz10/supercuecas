@@ -1,0 +1,103 @@
+/* urlsComponent's private CSS styles */
+.selected {
+    background-color: #CFD8DC !important;
+    color: white;
+  }
+  .urls {
+    list-style-type: none;
+  }
+  .urls li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+  }
+  .urls li.selected:hover {
+    background-color: #EEEEEE !important;
+    color: white;
+  }
+  .urls li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+  .urls .text {
+    position: relative;
+    top: -3px;
+  }
+  /*.urls .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #607D8B;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+  }*/
+
+  .container {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 10vh;
+}
+.tab-slidet--nav{
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.tab-slider--trigger {
+    font-size: 12px;
+    line-height: 1;
+    font-weight: bold;
+    color: #345F90;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 11px 20px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: inline-block;
+    /* remove this */
+    -webkit-transition: color 250ms ease-in-out;
+    transition: color 250ms ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .tab-slider--trigger.active {
+    color:green;
+  }
+
+  .tab-slider--container{
+      text-align: center;
+      border: 1.5px solid #59ABE3;
+      border-radius: 25px;
+  }
+  .tab-slider--body {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;   
+  }
+  .details{
+    width: 75%;
+    height: 80vh;
+    overflow-y: scroll;
+  }
+  .left-side{
+    width: 20%;
+  }

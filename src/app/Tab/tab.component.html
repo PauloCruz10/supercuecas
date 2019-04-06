@@ -1,0 +1,46 @@
+<div>
+    <div class="container">
+        <ul class="tab-slider--nav">
+            <li class="tab-slider--trigger" [class.active]="viewMode == 'urls'" rel="urls" (click)="viewMode ='urls'">Urls</li>
+            <li class="tab-slider--trigger" [class.active]="viewMode == 'files'" rel="files" (click)="viewMode ='files'">Files</li>
+        </ul>
+    </div>
+
+    <div class="tab-slider--container" [ngSwitch]="viewMode">
+        <div id="urls" class="tab-slider--body" *ngSwitchCase="'urls'">
+            <div class="left-side">
+                <ul class="urls">
+                    <li *ngFor="let url of urls" [class.selected]="url === selectedUrl" (click)="onSelect(url)">
+                        <span class="badge">{{url.id}}</span> {{url.url}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="details" *ngIf="selectedUrl">
+                <h2>Details</h2>
+                <div>{{selectedUrl.url}}</div>
+            </div>
+
+        </div>
+
+        <div id="files" class="tab-slider--body" *ngSwitchCase="'files'">
+            <div class="left-side">
+                <ul class="urls">
+                    <li *ngFor="let file of files"
+                     [class.selected]="file === selectedFile" (click)="onSelectFile(file)">
+                        <span class="badge">{{file.id}}</span> {{file.name}}
+                    </li>
+                </ul>
+            </div>
+            <div class="details" *ngIf="selectedFile">
+                <h2>Details</h2>
+                <prism-block (ngModel)="selectedFile.file" [code]= "selectedFile.file" language="'language-js'"></prism-block>
+                
+                {{selectedFile.file}}
+             
+            </div>
+
+        </div>
+    </div>
+
+</div>
