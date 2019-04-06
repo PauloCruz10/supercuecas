@@ -88,15 +88,15 @@
   }
   .tab-slider--body {
     margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     flex-direction: row;   
   }
   .details{
-    width: 75%;
-    height: 80vh;
-    overflow-y: scroll;
+    //width: 75%;
+    //height: 80vh;
+    //overflow-y: scroll;
+    background-color:#2f3640;
+    //white-space: pre-wrap;
   }
   .left-side{
     width: 20%;

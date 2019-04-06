@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { TabComponent } from './Tab/tab.component';
 import { ConaComponent } from './cona/cona.component';
 
-import 'prismjs/prism';
-import 'prismjs/components/prism-typescript';
-import { PrismComponent } from 'angular-prism';
+//import 'prismjs/prism';
+//import 'prismjs/components/prism-typescript';
+//import { PrismComponent } from 'angular-prism';
+import { PrismModule } from '@ngx-prism/core'; // <----- Here
+
 
 
 @NgModule({
@@ -16,16 +18,18 @@ import { PrismComponent } from 'angular-prism';
     AppComponent,
     TabComponent,
     ConaComponent,
-    PrismComponent
+    //PrismComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PrismModule
   ],
   exports:[
-    PrismComponent
+    
   ],
-  providers: [PrismComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

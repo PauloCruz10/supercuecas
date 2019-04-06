@@ -2,39 +2,27 @@ import {
     Component, 
     OnInit , 
     NgModule,
-    ComponentFactoryResolver,
-    Injectable,
-    Inject,
-    ViewContainerRef,
-    ViewChild
+    
  } from '@angular/core';
-
-import 'prismjs/prism';
-import 'prismjs/components/prism-typescript';
-import { PrismComponent } from 'angular-prism';
-import { AppComponent } from '../app.component';
-
-@NgModule({
-    imports: [],
-    exports: [TabComponent],
-    declarations: [
-        TabComponent,
-    ],
-    entryComponents:[PrismComponent,AppComponent],
-    providers: [],
-})
-
+import { from } from 'rxjs';
+declare var Prism;
 @Component({
     selector: 'app-tab',
     templateUrl: './tab.component.html',
     styleUrls: ['./tab.component.scss']
-  })
-  export class TabComponent implements OnInit{
+  })  
+  export class TabComponent implements OnInit {
 
     selectedUrl :string;
     selectedFile :string;
     step1Updated = false;
     factoryResolver = null;
+    highlighted: boolean = false;
+    myCode:string;
+
+    constructor(){
+        
+    }
       urls =[
         { id: 1, url: 'http://www.abola.pt' },
         { id: 2, url: 'http://www.record.pt' },
@@ -45,74 +33,28 @@ import { AppComponent } from '../app.component';
       files =[
         { id: 1, name:"index.js" ,
         file: `
-        function understands_video() {
-            return !!document.createElement(‘video’).canPlayType; // boolean
-            }
-            
-            if ( !understands_video() ) {
-            // Must be older browser or IE.
-            // Maybe do something like hide custom
-            // HTML5 controls. Or whatever…
-            videoControls.style.display = ‘none’;
-            }
-            function understands_video() {
-                return !!document.createElement(‘video’).canPlayType; // boolean
-                }
-                
-                if ( !understands_video() ) {
-                // Must be older browser or IE.
-                // Maybe do something like hide custom
-                // HTML5 controls. Or whatever…
-                videoControls.style.display = ‘none’;
-                }
-                function understands_video() {
-                    return !!document.createElement(‘video’).canPlayType; // boolean
-                    }
-                    
-                    if ( !understands_video() ) {
-                    // Must be older browser or IE.
-                    // Maybe do something like hide custom
-                    // HTML5 controls. Or whatever…
-                    videoControls.style.display = ‘none’;
-                    }
-                    function understands_video() {
-                        return !!document.createElement(‘video’).canPlayType; // boolean
-                        }
-                        
-                        if ( !understands_video() ) {
-                        // Must be older browser or IE.
-                        // Maybe do something like hide custom
-                        // HTML5 controls. Or whatever…
-                        videoControls.style.display = ‘none’;
-                        }
+        function(){ 
+            console.log("yolo"); 
+        }
         `},
     {
-        id: 2, name:"konami.js", file:`console.log("olho konami");`
+        id: 2, name:"konami.js", file:"var data = 1\n\t return 1;"
     }];
 
-    @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
+    ngOnInit(){
+         console.log("Estou a iniciar");
+    }
 
-    constructor(@Inject(ComponentFactoryResolver) factoryResolver) {
-        this.factoryResolver = factoryResolver;
-      }
-
-      ngOnInit(){
-          console.log("Estou a iniciar");
-      }
-
-      onSelect(url: string): void {
+    onSelect(url: string): void {
         this.selectedUrl = url;
         console.log(url);
-      }
+    }
 
-      onSelectFile(file: string): void {
+    onSelectFile(file: string): void {
+        var nw = Prism.plugins.NormalizeWhitespace;
         this.selectedFile = file;
-        console.log(file);
-        const crf = this.factoryResolver.resolveComponentFactory(
-            PrismComponent 
-        );
-        //this.entry.clear();
-        //const cf = this.entry.createComponent(crf);
-        //(<PrismComponent>cf.instance).code = "var r = 2;" ;
-      }
+        console.log(file["file"]);
+        this.myCode = Prism.highlight(file["file"],Prism.languages.javascript,'javascript');
+
+    }
   }

@@ -34,10 +34,12 @@
             </div>
             <div class="details" *ngIf="selectedFile">
                 <h2>Details</h2>
-                <prism-block (ngModel)="selectedFile.file" [code]= "selectedFile.file" language="'language-js'"></prism-block>
-                
+               <!-- <prism-block (ngModel)="selectedFile.file" [code]= "selectedFile.file" language="'language-js'"></prism-block>
+                -->
+                <!--<ngx-prism [code] = "selectedFile.file" [language]="'language-js'"></ngx-prism>
                 {{selectedFile.file}}
-             
+                -->
+                <pre><code [innerHtml]="myCode"></code></pre> 
             </div>
 
         </div>
