@@ -13,6 +13,7 @@ import 'prismjs/prism';
 import 'prismjs/components/prism-typescript';
 import { PrismComponent } from 'angular-prism';
 import { AppComponent } from '../app.component';
+declare var Prism;
 
 @NgModule({
     imports: [],
@@ -35,6 +36,7 @@ import { AppComponent } from '../app.component';
     selectedFile :string;
     step1Updated = false;
     factoryResolver = null;
+    mycode:string;
       urls =[
         { id: 1, url: 'http://www.abola.pt' },
         { id: 2, url: 'http://www.record.pt' },
@@ -44,8 +46,7 @@ import { AppComponent } from '../app.component';
 
       files =[
         { id: 1, name:"index.js" ,
-        file: `
-        function understands_video() {
+        file: `function understands_video() {
             return !!document.createElement(‘video’).canPlayType; // boolean
             }
             
@@ -84,8 +85,7 @@ import { AppComponent } from '../app.component';
                         // Maybe do something like hide custom
                         // HTML5 controls. Or whatever…
                         videoControls.style.display = ‘none’;
-                        }
-        `},
+                        }`},
     {
         id: 2, name:"konami.js", file:`console.log("olho konami");`
     }];
@@ -107,12 +107,15 @@ import { AppComponent } from '../app.component';
 
       onSelectFile(file: string): void {
         this.selectedFile = file;
-        console.log(file);
-        const crf = this.factoryResolver.resolveComponentFactory(
-            PrismComponent 
-        );
+        //console.log(file);
+        /*const crf = this.factoryResolver.resolveComponentFactory(
+            PrismComponent
+        );*/
         //this.entry.clear();
         //const cf = this.entry.createComponent(crf);
         //(<PrismComponent>cf.instance).code = "var r = 2;" ;
-      }
+        this.mycode= ''+Prism.highlight(file["file"],Prism.languages.javascript,'javascript');
+        //this.mycode = `<span>console</span>`;
+        console.log(this.mycode);
+    }
   }
